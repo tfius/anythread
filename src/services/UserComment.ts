@@ -61,6 +61,8 @@ export default class UserComment {
 
   /** After writing comment the user's ethereum address has to be broadcasted */
   public async writeComment(message: string, wallet: Wallet) {
+    console.log('writeComment swarm', window.swarm, message, wallet.address)
+
     const ethAddressBytes = Uint8Array.from(hexToBytes(wallet.address.replace('0x', ''))) as Utils.Bytes<20>
     const topic = this.getTopic(ethAddressBytes)
     const feedWriter = this.bee.makeFeedWriter('sequence', topic, wallet.privateKey.replace('0x', ''))

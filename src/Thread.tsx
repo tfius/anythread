@@ -80,6 +80,8 @@ export default function Thread({
 
   const handleSendComment = async (e: FormEvent) => {
     e.preventDefault()
+    console.log('handleSendComment swarm', contentHash, wallet.address)
+
     const userComment = new UserComment(bee, contentHash)
     await userComment.writeComment(commentText, wallet)
     await graffitiFeed.broadcastEthAddresses([Utils.makeEthAddress(wallet.address.replace('0x', ''))])
@@ -88,7 +90,6 @@ export default function Thread({
   return (
     <div>
       <ContentView contentHash={contentHash} />
-      <div children={childrenElements}></div>
 
       <div className="write-comment">
         <form onSubmit={handleSendComment}>
@@ -96,6 +97,8 @@ export default function Thread({
           <input type="submit" value="Submit" />
         </form>
       </div>
+
+      <div children={childrenElements}></div>
     </div>
   )
 }
