@@ -91,7 +91,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2>AnyThread</h2>
+      <h1>AnyThread</h1>
       <div className="anythread-body">
         <Thread
           bee={bee}
