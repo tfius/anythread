@@ -43,16 +43,25 @@ export default function ContentView({ contentHash, bee, level }: Props): ReactEl
   }, [contentHash])
 
   return (
-    <div id={contentHash} className="anythread-comment">
-      <div>
-        <h2>{text}</h2>
-        <div className="anythread-comment-name">
-          <a href={bzzLink}>BZZ link</a> <a href={'/#' + contentHash}>View</a>
-        </div>
-        <div className="anythread-comment-date">{new Date(Number(timestamp)).toDateString()}</div>
-        <div className="anythread-comment-address">{ethAddress}🦄</div>
-        {/* <div className="anythread-comment-content">{hash}</div> */}
+    <>
+      <div id={contentHash} className="anythread-comment">
+        {ethAddress !== '0x' ? (
+          <div>
+            <h2>{text}</h2>
+            <div className="anythread-comment-name">
+              <a href={bzzLink}>BZZ </a> <a href={'/#' + contentHash}>View</a>
+            </div>
+            <div className="anythread-comment-date">{new Date(Number(timestamp)).toDateString()}</div>
+            <div className="anythread-comment-address">{ethAddress}🦄</div>
+            {/* <div className="anythread-comment-content">{hash}</div> */}
+          </div>
+        ) : (
+          <div>
+            <h2>ROOT</h2>
+          </div>
+        )}
       </div>
-    </div>
+      {/* {level === 0 ? <div>Type anything {level}</div> : <></>} */}
+    </>
   )
 }
